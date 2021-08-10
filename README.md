@@ -1,10 +1,11 @@
 # Scriptr
+
 This is a simple application that has two versions: Lite and Zoom. 
 
-#Scriptr Lite
+Scriptr Lite
 Lite will require manual user input of the Template, Regex, Input, and Output and generate a groovy script from a template to search an Input for the given Regex. 
 
-#Scriptr Zoom
+Scriptr Zoom
 Zoom will allow a user to specify a CSV file containing 
 
 
