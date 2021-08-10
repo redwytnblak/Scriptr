@@ -1,0 +1,85 @@
+import com.seal.logic.engine.model.JobDescriptor;  
+
+import com.seal.logic.engine.model.SealMetadataValue;  
+
+import java.util.regex.*;  
+
+import com.seal.logic.engine.delegate.util.SealProcessUtil;  
+
+import org.slf4j.LoggerFactory;  
+
+   
+
+def matchFound = "false";  
+
+   
+
+def logger = LoggerFactory.getLogger(SealProcessUtil.class);  
+
+   
+
+ArrayList <String> listDT=execution.getVariable("decisionTableUpdatedVariables", ArrayList.class);  
+
+ArrayList<SealMetadataValue> <OUTPUT PLACEHOLDER>_values = new ArrayList<SealMetadataValue>();  
+
+ArrayList <SealMetadataValue> <INPUT PLACEHOLDER>_values = execution.getVariable("<INPUT PLACEHOLDER>", ArrayList.class);  
+
+   
+
+String regex = "<REGEX PLACEHOLDER>";  
+
+   
+
+//logger.info("============ Inside Regex Script ============"+<INPUT PLACEHOLDER>_values.size());  
+
+   
+
+if (<INPUT PLACEHOLDER>_values != null && <INPUT PLACEHOLDER>_values.size() != 0) {  
+
+   
+
+        logger.info("============ <INPUT PLACEHOLDER> Label has value(s) ============");  
+
+   
+
+for (int j = 0; j < <INPUT PLACEHOLDER>_values.size(); j++) {  
+
+   
+
+        logger.info("============ Processing <INPUT PLACEHOLDER> value: "+<INPUT PLACEHOLDER>_values[j].getValue().toString()+" ============");  
+
+   
+
+        Matcher digitMatcher = Pattern.compile(regex).matcher(<INPUT PLACEHOLDER>_values[j].getValue().toString());  
+
+        while (digitMatcher.find() && (matchFound!="true")) {  
+
+            logger.info("============ Match Found: "+digitMatcher.group()+" ============");  
+
+            SealMetadataValue sealMetadataValue = new SealMetadataValue(digitMatcher.group(), "String");  
+
+            <OUTPUT PLACEHOLDER>_values.add(sealMetadataValue);   
+
+   
+
+matchFound = "true";   
+
+        }  
+
+  }  
+
+   
+
+}  
+
+   
+
+execution.setVariable("<OUTPUT PLACEHOLDER>", <OUTPUT PLACEHOLDER>_values);  
+
+listDT.add("<OUTPUT PLACEHOLDER>");  
+
+execution.setVariable("decisionTableUpdatedVariables",listDT);  
+
+  
+
+ 
